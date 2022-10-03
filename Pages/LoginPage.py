@@ -7,7 +7,7 @@ class LoginPage(BasePage):
     EMAIL = (By.ID, "username")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "loginBtn")
-    SIGNUP_LINK = (By.ID, "signup_link")
+    SIGNUP_LINK = (By.LINK_TEXT, "Sign up")
 
     def __init__(self, driver):
         super().__init__(driver)
