@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from Pages.BasePage import BasePage
+from Browser.Pages.BasePage import BasePage
 
 
 class LoginPage(BasePage):

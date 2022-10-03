@@ -1,8 +1,6 @@
-import pytest
-
 from Config.Config import TestData
-from Pages.LoginPage import LoginPage
-from Tests.test_base import BaseTest
+from Browser.Pages.LoginPage import LoginPage
+from Browser.Tests.test_base import BaseTest
 
 
 class TestLogin(BaseTest):
