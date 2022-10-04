@@ -8,7 +8,7 @@ class TestDashboardPage(BaseTest):
     def test_1(self):
         self.DashboardPage = DashboardPage(self.driver)
         self.DashboardPage.goToUrl(TestData.BASE_URL)
-        flag = self.DashboardPage.is_signup_link_exist()
+        flag = self.DashboardPage.is_control_text_exist()
         assert flag, "something "
 
     def test_2(self):
