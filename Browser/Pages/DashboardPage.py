@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from Browser.Pages.BasePage import BasePage
 
 
-class LoginPage(BasePage):
+class DashboardPage(BasePage):
 
     EMAIL = (By.ID, "username")
     PASSWORD = (By.ID, "password")

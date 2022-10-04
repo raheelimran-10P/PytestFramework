@@ -14,7 +14,7 @@ def test_get_collection_data():
 
 
 def test_post_collection():
-    file = open(os.path.abspath("../TestData/CollectionPayload.json"), "r")
+    file = open(os.path.abspath("Api/TestData/CollectionPayload.json"), "r")
     path = "/collection"
     inputData = json.loads(file.read())
     inputData["name"] = "raheel"

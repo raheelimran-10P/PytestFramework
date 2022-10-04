@@ -1,5 +1,5 @@
 class TestData:
     CHROME_DRIVER_PATH = ""
-    BASE_URL = "https://app.hubspot.com/login"
+    BASE_URL = "http://localhost:1234"
     TITLE = "HubSpot Login"
 
