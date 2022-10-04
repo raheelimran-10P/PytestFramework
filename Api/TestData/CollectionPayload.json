@@ -1,0 +1,6 @@
+{
+  "start_time": "string",
+  "stop_time": "string",
+  "name": "string",
+  "notes": "string"
+}
