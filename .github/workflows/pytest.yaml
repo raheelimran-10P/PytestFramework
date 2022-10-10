@@ -18,5 +18,15 @@ jobs:
           $CONDA/bin/conda env list
           $CONDA/bin/activate PytestFrameworkEnv
 
+      - name: Test with pytest
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+            activate-environment: PytestFrameworkEnv
+            environment-file: Config/environment.yml
+            auto-activate-base: false
+        run: |
+          $CONDA/bin/conda env list
+          
+
 
      
