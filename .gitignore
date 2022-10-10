@@ -3,3 +3,5 @@
 .venv
 *.pyc
 *.pytest_cache
+Reports/PytestHtmlReport/report.html
+*.html
