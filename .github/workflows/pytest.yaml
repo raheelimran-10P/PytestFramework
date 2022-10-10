@@ -16,6 +16,7 @@ jobs:
           # $CONDA is an environment variable pointing to the root of the miniconda directory
           $CONDA/bin/conda env create --file Config/environment.yml
           $CONDA/bin/conda env list
+          $CONDA/bin/conda init bash
           $CONDA/bin/conda activate PytestFrameworkEnv
 
       - name: Test with pytest
