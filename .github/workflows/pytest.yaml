@@ -20,6 +20,5 @@ jobs:
 
       - name: Test with pytest
         run: |
-          pip install pytest
-          pip install pytest-cov
-          pytest --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          $CONDA/bin/activate PytestFrameworkEnv
+          python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
