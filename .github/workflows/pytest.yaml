@@ -24,4 +24,7 @@ jobs:
           $CONDA/bin/conda env list
           $CONDA/bin/activate PytestFrameworkEnv
           $CONDA/bin/conda env list
+          $CONDA/bin/conda init bash
+          source ~/.bashrc
+          $CONDA/bin/activate PytestFrameworkEnv
           python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
