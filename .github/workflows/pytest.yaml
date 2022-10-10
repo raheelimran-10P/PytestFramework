@@ -19,5 +19,4 @@ jobs:
           $CONDA/bin/activate PytestFrameworkEnv
 
 
-      - name: Test with pytest
-       
+     
