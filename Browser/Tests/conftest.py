@@ -11,10 +11,10 @@ def init_driver(request):
     options = Options()
     options.add_argument("start-maximized")
     #if request.param == "Chrome":
-    #web_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    web_driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+
+    web_driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
     #if request.param == "Firefox":
-    #    web_driver = webdriver.firefox(executable_path=GeckoDriverManager().install())
+        #web_driver = webdriver.firefox(executable_path=GeckoDriverManager().install())
     request.cls.driver = web_driver
     #web_driver.implicitly_wait(10)
     yield
