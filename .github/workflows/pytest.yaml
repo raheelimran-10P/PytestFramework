@@ -26,3 +26,4 @@ jobs:
         with:
           name: pytest-results
           path: Reports/PytestHtmlReport/report.html
+        if: ${{ always() }}
