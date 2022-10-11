@@ -27,3 +27,7 @@ jobs:
           python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
 
       - name: step 2
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pytest-results
+          path: Reports/PytestHtmlReport/report.html
