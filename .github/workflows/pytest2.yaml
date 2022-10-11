@@ -1,5 +1,9 @@
+name: Python package 2
+
+on: [push]
+
 jobs:
-  example-3:
+  build:
     name: Ex3 Linux
     runs-on: "ubuntu-latest"
     defaults:
