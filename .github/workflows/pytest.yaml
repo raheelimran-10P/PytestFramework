@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
-      #- uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           activate-environment: PytestFrameworkEnv
           environment-file: Config/environment.yml
@@ -24,9 +24,3 @@ jobs:
           conda list
           conda env list
           python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
-
-      - name: step 2
-      - uses: actions/upload-artifact@v3
-        with:
-          name: pytest-results
-          path: Reports/PytestHtmlReport/report.html
