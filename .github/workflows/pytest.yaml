@@ -1,6 +1,6 @@
 name: Set up Python & Install dependencies from conda
 
-on: #[push]
+on: [push]
 
 jobs:
   build:
@@ -12,12 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
+      - uses: actions/upload-artifact@v3
         with:
           activate-environment: PytestFrameworkEnv
           environment-file: Config/environment.yml
           auto-activate-base: false
+          name: pytest-results
+          path: Reports/PytestHtmlReport/report.html
       - run: |
           conda info
           conda list
           conda env list
           python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
+          # Use always() to always run this step to publish test results when there are test failures
+          if: ${{ always() }}
