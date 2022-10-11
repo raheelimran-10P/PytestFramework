@@ -1,22 +1,23 @@
-name: Python package
+name: Set up Python & Install dependencies from conda
 
-on: [push]
+on: #[push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Test with pytest
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: |
-          # $CONDA is an environment variable pointing to the root of the miniconda directory
-          $CONDA/bin/conda env create --file Config/environment.yml
-          $CONDA/bin/conda env list
-          $CONDA/bin/activate PytestFrameworkEnv
-
-
-     
+          activate-environment: PytestFrameworkEnv
+          environment-file: Config/environment.yml
+          auto-activate-base: false
+      - run: |
+          conda info
+          conda list
+          conda env list
+          python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
