@@ -4,35 +4,21 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Test with pytest
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: |
-          # $CONDA is an environment variable pointing to the root of the miniconda directory
-          $CONDA/bin/conda env create --file Config/environment.yml
-          $CONDA/bin/conda env list
-          $CONDA/bin/activate PytestFrameworkEnv
-
+      - name: Set up Python & Install dependencies from conda
+      - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          auto-activate-base: true
-          activate-environment: ""
-      - name: Bash
-        shell: bash -l {0}
-        run: |
+          activate-environment: PytestFrameworkEnv
+          environment-file: Config/environment.yml
+          auto-activate-base: false
+      - run: |
+          conda info
+          conda list
           conda env list
-          conda activate PytestFrameworkEnv
-      - name: Test with pytest
-        run: |
-          $CONDA/bin/conda env list
-          $CONDA/bin/conda activate PytestFrameworkEnv
-          #python -m pytest
-          
-
-
-     
+          python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
