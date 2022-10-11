@@ -12,13 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
-      - uses: actions/upload-artifact@v3
         with:
           activate-environment: PytestFrameworkEnv
           environment-file: Config/environment.yml
           auto-activate-base: false
-          #name: pytest-results
-          #path: Reports/PytestHtmlReport/report.html
+      - uses: actions/upload-artifact@v3
+        #name: pytest-results
+        #path: Reports/PytestHtmlReport/report.html
       - run: |
           conda info
           conda list
