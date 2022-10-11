@@ -15,8 +15,6 @@ jobs:
         with:
           activate-environment: PytestFrameworkEnv
           environment-file: Config/environment.yml
-          python-version: 3.10
-          condarc-file: Config/environment.yml
           auto-activate-base: false
       - run: |
           conda info
