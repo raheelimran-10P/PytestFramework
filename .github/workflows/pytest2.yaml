@@ -20,3 +20,6 @@ jobs:
           conda info
           conda list
           conda env list
+      - name: Test with pytest
+      - run: |
+          python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
