@@ -1,6 +1,6 @@
 name: Set up Python & Install dependencies from conda
 
-on: #[push]
+on: [push]
 
 jobs:
   build:
@@ -21,3 +21,9 @@ jobs:
           conda list
           conda env list
           python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pytest-results
+          path: Reports/PytestHtmlReport/report.html
+        if: ${{ always() }}
