@@ -16,11 +16,15 @@ jobs:
           activate-environment: PytestFrameworkEnv
           environment-file: Config/environment.yml
           auto-activate-base: false
-      - uses: actions/upload-artifact@v3
-        #name: pytest-results
-        #path: Reports/PytestHtmlReport/report.html
       - run: |
           conda info
           conda list
           conda env list
           python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pytest-results
+          path: Reports/PytestHtmlReport/report.html
+          # Use always() to always run this step to publish test results when there are test failures
+          if: ${{ always() }}
