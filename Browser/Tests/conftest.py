@@ -10,6 +10,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 def init_driver(request):
     options = Options()
     options.add_argument("start-maximized")
+    options.add_argument("--headless")
     #if request.param == "Chrome":
 
     web_driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
