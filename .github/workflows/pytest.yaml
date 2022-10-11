@@ -26,6 +26,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda env list
+          conda activate PytestFrameworkEnv
       - name: Test with pytest
         run: |
           $CONDA/bin/conda env list
