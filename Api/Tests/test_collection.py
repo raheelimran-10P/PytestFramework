@@ -1,3 +1,4 @@
+import pytest
 import requests
 import json
 import jsonpath
@@ -6,6 +7,7 @@ import os
 baseUrl = "http://0.0.0.0:8008"
 
 
+@pytest.mark.skip(reason="just testing skip")
 def test_get_collection_data():
     path = "/collection"
     response = requests.get(url=baseUrl + path)
@@ -13,6 +15,7 @@ def test_get_collection_data():
     assert response.status_code == 200
 
 
+@pytest.mark.skip(reason="just testing skip")
 def test_post_collection():
     file = open(os.path.abspath("Api/TestData/CollectionPayload.json"), "r")
     path = "/collection"

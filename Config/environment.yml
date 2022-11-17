@@ -48,15 +48,20 @@ dependencies:
   - wheel=0.37.1=pyhd8ed1ab_0
   - xz=5.2.6=h166bdaf_0
   - pip:
+    - astor==0.8.1
     - charset-normalizer==2.1.1
     - execnet==1.9.0
     - jsonpath==0.82
+    - pytest-ast-transformer==1.0.3
     - pytest-forked==1.4.0
     - pytest-html==3.1.1
     - pytest-metadata==2.0.2
+    - pytest-soft-assertions==0.1.2
     - pytest-xdist==2.5.0
+    - python-decouple==3.6
     - python-dotenv==0.21.0
     - requests==2.28.1
+    - texttable==1.6.4
     - tqdm==4.64.1
     - webdriver-manager==3.8.3
 prefix: /home/raheel/miniconda3/envs/PytestFrameworkEnv
