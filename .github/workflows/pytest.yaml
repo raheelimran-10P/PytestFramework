@@ -1,6 +1,14 @@
 name: Set up Python & Install dependencies from conda
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
   build:
@@ -16,6 +24,8 @@ jobs:
           activate-environment: PytestFrameworkEnv
           environment-file: Config/environment.yml
           auto-activate-base: false
+        env:
+          BASE_URL: ${{ secrets.EARTHOPTICS_BASE_URL }}
       - run: |
           conda info
           conda list
