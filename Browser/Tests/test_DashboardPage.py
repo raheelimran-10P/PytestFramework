@@ -11,10 +11,6 @@ class TestDashboardPage(BaseTest):
         self.DashboardPage.goToUrl(config('BASE_URL'))
         self.DashboardPage.get_title(TestData.TITLE)
 
-    def test_4(self):
-        self.DashboardPage = DashboardPage(self.driver)
-        self.DashboardPage.goToUrl(config('URL'))
-
     def test_2(self):
         self.DashboardPage = DashboardPage(self.driver)
         self.DashboardPage.goToUrl(config('BASE_URL'))

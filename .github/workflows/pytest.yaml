@@ -26,7 +26,6 @@ jobs:
           auto-activate-base: false
         env:
           BASE_URL: ${{ secrets.EARTHOPTICS_BASE_URL }}
-          URL: ${{ secrets.URL }}
       - run: |
           conda info
           conda list
