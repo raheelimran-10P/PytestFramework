@@ -10,7 +10,7 @@ on:
       - main
       - develop
 env:
-  BASE_URL: ${{ secrets.earthoptics_base_url }}
+  BASE_URL: ${{ secrets.EARTHOPTICS_BASE_URL }}
 
 jobs:
   build:
