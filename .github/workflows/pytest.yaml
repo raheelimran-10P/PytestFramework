@@ -1,6 +1,16 @@
 name: Set up Python & Install dependencies from conda
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+env:
+  BASE_URL: ${{  }}
 
 jobs:
   build:
