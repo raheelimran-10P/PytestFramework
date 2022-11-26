@@ -1,4 +1,3 @@
-from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
@@ -29,3 +28,14 @@ class BasePage:
     def get_title(self, title):
         WebDriverWait(self.driver, 10).until(expected_conditions.title_is(title))
         return self.driver.title
+
+    def openNewTab(self):
+        self.driver.switch_to.new_window('tab')
+
+    def switchTab(self, handler):
+        self.driver.switch_to.window(handler)
+
+
+
+
+
