@@ -1,4 +1,5 @@
 from decouple import config
+from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Browser.Pages.DashboardPage import DashboardPage
 from Browser.TestData.TestData import TestData
 from Browser.Tests.test_base import BaseTest
@@ -68,12 +69,14 @@ class TestDashboardPage(BaseTest):
         assert len(self.driver.window_handles) == 1
 
         # Open new tab and switch to it
-        self.DashboardPage.openNewTab()
-        self.DashboardPage.goToUrl("https://selenium.dev")
-        
-        #self.DashboardPage.switchTab(window_1)
+        self.AwsLoginPage = AwsLoginPage(self.driver)
+        self.AwsLoginPage.openNewTab()
+        self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
+        self.AwsLoginPage.get_title("IoT Device Simulator")
 
+        # self.DashboardPage.switchTab(window_1)
 
-
-
-
+    def test_5(self):
+        self.AwsLoginPage = AwsLoginPage(self.driver)
+        self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
+        self.AwsLoginPage.set_username(config('AWS_IOT_USERNAME'))

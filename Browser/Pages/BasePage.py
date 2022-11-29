@@ -1,7 +1,6 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-
 class BasePage:
 
     def __init__(self, driver):
@@ -34,8 +33,3 @@ class BasePage:
 
     def switchTab(self, handler):
         self.driver.switch_to.window(handler)
-
-
-
-
-
