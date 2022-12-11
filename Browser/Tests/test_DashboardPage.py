@@ -80,4 +80,4 @@ class TestDashboardPage(BaseTest):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
         self.AwsLoginPage.set_username(config('AWS_IOT_USERNAME'))
-        
+
