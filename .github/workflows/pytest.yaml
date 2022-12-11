@@ -1,5 +1,5 @@
-name: Set up Python & Install dependencies from conda
-
+#name: Set up Python & Install dependencies from conda
+#
 #on:
 #  push:
 #    branches:
@@ -9,32 +9,32 @@ name: Set up Python & Install dependencies from conda
 #    branches:
 #      - main
 #      - develop
-
-jobs:
-  build:
-    name: Test with pytest
-    runs-on: "ubuntu-latest"
-    defaults:
-      run:
-        shell: bash -l {0}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: PytestFrameworkEnv
-          environment-file: Config/environment.yml
-          auto-activate-base: false
-        env:
-          BASE_URL: ${{ secrets.EARTHOPTICS_BASE_URL }}
-      - run: |
-          conda info
-          conda list
-          conda env list
-          python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: pytest-results
-          path: Reports/PytestHtmlReport/report.html
-        # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}
+#
+#jobs:
+#  build:
+#    name: Test with pytest
+#    runs-on: "ubuntu-latest"
+#    defaults:
+#      run:
+#        shell: bash -l {0}
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: conda-incubator/setup-miniconda@v2
+#        with:
+#          activate-environment: PytestFrameworkEnv
+#          environment-file: Config/environment.yml
+#          auto-activate-base: false
+#        env:
+#          BASE_URL: ${{ secrets.EARTHOPTICS_BASE_URL }}
+#      - run: |
+#          conda info
+#          conda list
+#          conda env list
+#          python -m pytest -v -rs --html=Reports/PytestHtmlReport/report.html --self-contained-html
+#
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: pytest-results
+#          path: Reports/PytestHtmlReport/report.html
+#        # Use always() to always run this step to publish test results when there are test failures
+#        if: ${{ always() }}
