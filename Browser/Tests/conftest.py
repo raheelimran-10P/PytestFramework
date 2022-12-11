@@ -17,8 +17,8 @@ def init_driver(request):
     # if request.param == "Firefox":
     # web_driver = webdriver.firefox(executable_path=GeckoDriverManager().install())
     request.cls.driver = web_driver
-    # web_driver.implicitly_wait(10)
-    yield
+    web_driver.implicitly_wait(10)
+    yield web_driver
     web_driver.quit()
 
 
