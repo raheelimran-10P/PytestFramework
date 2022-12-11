@@ -1,6 +1,7 @@
 name: Set up Python & Install dependencies from conda
 
 on:
+   workflow_dispatch
 #  push:
 #    branches:
 #      - main
