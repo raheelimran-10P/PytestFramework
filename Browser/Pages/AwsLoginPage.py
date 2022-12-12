@@ -6,7 +6,6 @@ from Browser.Pages.BasePage import BasePage
 
 
 class AwsLoginPage(BasePage):
-
     USERNAME = (By.XPATH, "//input[@name='username']")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "loginBtn")
@@ -18,8 +17,7 @@ class AwsLoginPage(BasePage):
     def get_aws_page_title(self, title):
         return self.get_title(title)
 
-    def set_username(self, username):
-
+    def login(self, username, password):
         shadow_host1 = self.driver.find_element(By.TAG_NAME, "amplify-authenticator")
         shadow_root1 = shadow_host1.shadow_root
         shadow_content1 = shadow_root1.find_element(By.CLASS_NAME, "auth-container")
@@ -27,10 +25,9 @@ class AwsLoginPage(BasePage):
         shadow_host2 = shadow_content1.find_element(By.TAG_NAME, "amplify-sign-in")
         shadow_root2 = shadow_host2.shadow_root
 
-        shadow_content2 = shadow_root2.find_element(By.CLASS_NAME, "input")
-        shadow_content2.send_keys(username)
+        shadow_content_input = shadow_root2.find_elements(By.CLASS_NAME, "input")
+        shadow_content_input[0].send_keys(username)
+        shadow_content_input[1].send_keys(password)
 
-        #self.do_send_key(self, username)
-        #self.do_send_key(self, password)
-        #self.do_click(self.LOGIN_BUTTON)
-
+        shadow_content_button = shadow_root2.find_elements(By.CLASS_NAME, "button")
+        shadow_content_button[1].click()
