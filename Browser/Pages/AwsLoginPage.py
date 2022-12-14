@@ -10,6 +10,8 @@ class AwsLoginPage(BasePage):
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "loginBtn")
     SIGNUP_LINK = (By.LINK_TEXT, "Sign up")
+    DEVICE_TYPE_LINK = (By.XPATH, "//a[@href='/device-types']")
+    DEVICE_FILTER = (By.XPATH, "//div[text()=' (']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -31,3 +33,7 @@ class AwsLoginPage(BasePage):
 
         shadow_content_button = shadow_root2.find_elements(By.CLASS_NAME, "button")
         shadow_content_button[1].click()
+        self.is_visible(self.DEVICE_TYPE_LINK)
+        self.is_visible(self.DEVICE_FILTER)
+
+

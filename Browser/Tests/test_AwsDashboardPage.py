@@ -1,5 +1,7 @@
+import time
 import pytest
 from decouple import config
+from Browser.Pages.AwsDashboardPage import AwsDashboardPage
 from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Browser.Pages.DashboardPage import DashboardPage
 from Browser.TestData.TestData import TestData
@@ -12,3 +14,8 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
         self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
+
+        self.AwsDashboardPage = AwsDashboardPage(self.driver)
+        self.AwsDashboardPage.get_title('IoT Device Simulator')
+        self.AwsDashboardPage.goToDeviceType()
+        self.AwsDashboardPage.createDeviceTypes()
