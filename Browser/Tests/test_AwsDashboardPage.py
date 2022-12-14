@@ -17,5 +17,8 @@ class TestAwsDashboardPage(BaseTest):
 
         self.AwsDashboardPage = AwsDashboardPage(self.driver)
         self.AwsDashboardPage.get_title('IoT Device Simulator')
-        self.AwsDashboardPage.goToDeviceType()
-        self.AwsDashboardPage.createDeviceTypes()
+        self.AwsDashboardPage.go_to_device_type()
+        self.AwsDashboardPage.create_device_types()
+        self.AwsDashboardPage.go_to_simulation()
+        self.AwsDashboardPage.create_simulation()
+        self.AwsDashboardPage.run_simulations()
