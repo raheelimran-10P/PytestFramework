@@ -1,6 +1,16 @@
+# .pre-commit-config.yaml
 repos:
 -   repo: https://github.com/Yelp/detect-secrets
     rev: v1.4.0
     hooks:
     -   id: detect-secrets
-        exclude: package.lock.json 
+        #args: ['--baseline', '.secrets.baseline']
+        exclude: package.lock.json
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0  # Use the ref you want to point at
+    hooks:
+    -   id: trailing-whitespace
+    -   id: name-tests-test
+    -   id: check-yaml
+    # -   id: ...
