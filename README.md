@@ -19,6 +19,8 @@ Run the following command to generate pytest html reports `python -m pytest -v -
 
 ## More Info
 
+Before commit anything run the in the project's root directory command `pre-commit run --all-files`.
+
 
 
 

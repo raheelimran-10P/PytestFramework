@@ -1,3 +1,4 @@
+import pytest
 from decouple import config
 from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Browser.Pages.DashboardPage import DashboardPage
@@ -7,17 +8,20 @@ from Browser.Tests.test_base import BaseTest
 
 class TestDashboardPage(BaseTest):
 
+    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
     def test_1(self):
         self.DashboardPage = DashboardPage(self.driver)
         self.DashboardPage.goToUrl(config('BASE_URL'))
         self.DashboardPage.get_title(TestData.TITLE)
 
+    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
     def test_2(self):
         self.DashboardPage = DashboardPage(self.driver)
         self.DashboardPage.goToUrl(config('BASE_URL'))
         control = self.DashboardPage.is_visible(self.DashboardPage.CONTROL_TEXT)
         assert control == True
 
+    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
     def test_3(self):
         self.DashboardPage = DashboardPage(self.driver)
         self.DashboardPage.goToUrl(config('BASE_URL'))
@@ -30,6 +34,7 @@ class TestDashboardPage(BaseTest):
         mlmodel = self.DashboardPage.is_visible(self.DashboardPage.MLMODELDEVICE_TEXT)
         assert mlmodel == True
 
+    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
     def test_4(self):
         self.DashboardPage = DashboardPage(self.driver)
         self.DashboardPage.goToUrl(config('BASE_URL'))
@@ -76,8 +81,8 @@ class TestDashboardPage(BaseTest):
 
         # self.DashboardPage.switchTab(window_1)
 
+    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
     def test_5(self):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
-        self.AwsLoginPage.set_username(config('AWS_IOT_USERNAME'))
-
+        self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
