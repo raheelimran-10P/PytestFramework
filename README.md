@@ -19,7 +19,8 @@ Run the following command to generate pytest html reports `python -m pytest -v -
 
 ## More Info
 
-Before commit anything run the in the project's root directory command `pre-commit run --all-files`.
+Run `pre-commit install` to install pre-commit into your git hooks. pre-commit will now run on every commit. Every time you clone a project using pre-commit running pre-commit install should always be the first thing you do.
+If you want to manually run all pre-commit hooks on a repository, run `pre-commit run --all-files`, To run individual hooks use `pre-commit run <hook_id>`.
 
 
 
