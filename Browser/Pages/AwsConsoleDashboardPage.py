@@ -40,6 +40,8 @@ class AwsConsoleDashboardPage(BasePage):
         self.is_visible(self.PUBLISH_TO_A_TOPIC_TAB)
         self.do_click(self.PUBLISH_TO_A_TOPIC_TAB)
         self.is_visible(self.TOPIC_NAME_FIELD)
+        self.do_send_key(self.TOPIC_NAME_FIELD, Keys.CONTROL + 'a')
+        self.do_send_key(self.TOPIC_NAME_FIELD, Keys.DELETE)
         self.do_send_key(self.TOPIC_NAME_FIELD, topic_name)
         self.is_visible(self.MESSAGE_PAYLOAD_FIELD)
         self.do_send_key(self.MESSAGE_PAYLOAD_FIELD, Keys.CONTROL + 'a')
