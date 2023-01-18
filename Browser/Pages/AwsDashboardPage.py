@@ -2,9 +2,10 @@ import time
 
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-
 from Browser.Pages.BasePage import BasePage
 import os
+
+from Browser.TestData.TestData import TestData
 
 
 class AwsDashboardPage(BasePage):
@@ -12,7 +13,8 @@ class AwsDashboardPage(BasePage):
     EMI_DEVICE_TYPE = (By.XPATH, "//td[text()='EMI']")
     EMI_TOPIC = (By.XPATH, "//td[text()='EMI_DATA']")
     CREATE_DEVICE = (By.XPATH, "//a[@href=\"/device-types/create\"]")
-    FILE_UPLOAD_BUTTON = (By.CSS_SELECTOR, "#root > div > div > div.content-card.card > div.content-card-title.card-title.h5 > button:nth-child(3)")
+    FILE_UPLOAD_BUTTON = (By.CSS_SELECTOR,
+                          "#root > div > div > div.content-card.card > div.content-card-title.card-title.h5 > button:nth-child(3)")
     FILE_UPLOAD = (By.XPATH, "//*[@id='fileUpload']")
     SAVE = (By.XPATH, "//*[@id=\"deviceTypeForm\"]/div[4]/button[1]")
     GPS_DEVICE_TYPE = (By.XPATH, "//td[text()='GPS']")
@@ -33,8 +35,16 @@ class AwsDashboardPage(BasePage):
     SIMULATION_GPS = (By.XPATH, "//td[text()=\"GPS\"]")
     SIMULATION_GPR = (By.XPATH, "//td[text()=\"GPR\"]")
     SIMULATION_CHECK_ALL = (By.ID, "all")
-    SIMULATION_START = (By.CSS_SELECTOR, "#root > div > div > div:nth-child(2) > div > div > div.content-card-title.card-title.h5 > button:nth-child(4)")
-    SIMULATION_REFRESH = (By.CSS_SELECTOR, "#root > div > div > div:nth-child(2) > div > div > div.content-card-title.card-title.h5 > button:nth-child(1)")
+    SIMULATION_CHECK_GPS = (By.XPATH, "//td[text()='GPS']/../td/div/input")
+    SIMULATION_CHECK_EMI = (By.XPATH, "//td[text()='EMI']/../td/div/input")
+    SIMULATION_CHECK_GPR = (By.XPATH, "//td[text()='GPR']/../td/div/input")
+    SIMULATION_START = (By.CSS_SELECTOR,
+                        "#root > div > div > div:nth-child(2) > div > div > div.content-card-title.card-title.h5 > button:nth-child(4)")
+    SIMULATION_REFRESH = (By.CSS_SELECTOR,
+                          "#root > div > div > div:nth-child(2) > div > div > div.content-card-title.card-title.h5 > button:nth-child(1)")
+    SIMULATION_SLEEPING_GPS = (By.XPATH, "//td[text()='GPS']/../td[text()='sleeping']")
+    SIMULATION_SLEEPING_EMI = (By.XPATH, "//td[text()='EMI']/../td[text()='sleeping']")
+    SIMULATION_SLEEPING_GPR = (By.XPATH, "//td[text()='GPR']/../td[text()='sleeping']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -117,17 +127,17 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.DEVICE_TYPE)
                 self.select_by_visible_text(self.DEVICE_TYPE, "EMI")
                 self.is_visible(self.NUMBER_OF_DEVICE)
-                self.do_send_key(self.NUMBER_OF_DEVICE, Keys.CONTROL+'a')
+                self.do_send_key(self.NUMBER_OF_DEVICE, Keys.CONTROL + 'a')
                 self.do_send_key(self.NUMBER_OF_DEVICE, Keys.DELETE)
-                self.do_send_key(self.NUMBER_OF_DEVICE, 1)
+                self.do_send_key(self.NUMBER_OF_DEVICE, TestData.NUMBER_OF_DEVICE)
                 self.is_visible(self.DATA_TRANSMISSION_INTERVAL)
                 self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, Keys.CONTROL + 'a')
                 self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, Keys.DELETE)
-                self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, 2)
+                self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, TestData.DATA_TRANSMISSION_INTERVAL_SECONDS)
                 self.is_visible(self.DATA_TRANSMISSION_DURATION)
                 self.do_send_key(self.DATA_TRANSMISSION_DURATION, Keys.CONTROL + 'a')
                 self.do_send_key(self.DATA_TRANSMISSION_DURATION, Keys.DELETE)
-                self.do_send_key(self.DATA_TRANSMISSION_DURATION, 80)
+                self.do_send_key(self.DATA_TRANSMISSION_DURATION, TestData.DATA_TRANSMISSION_DURATION_SECONDS)
                 self.is_visible(self.SIMULATION_SAVE)
                 self.do_click(self.SIMULATION_SAVE)
                 self.is_visible(self.SIMULATION_EMI)
@@ -144,17 +154,17 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.DEVICE_TYPE)
                 self.select_by_visible_text(self.DEVICE_TYPE, "GPS")
                 self.is_visible(self.NUMBER_OF_DEVICE)
-                self.do_send_key(self.NUMBER_OF_DEVICE, Keys.CONTROL+'a')
+                self.do_send_key(self.NUMBER_OF_DEVICE, Keys.CONTROL + 'a')
                 self.do_send_key(self.NUMBER_OF_DEVICE, Keys.DELETE)
-                self.do_send_key(self.NUMBER_OF_DEVICE, 1)
+                self.do_send_key(self.NUMBER_OF_DEVICE, TestData.NUMBER_OF_DEVICE)
                 self.is_visible(self.DATA_TRANSMISSION_INTERVAL)
                 self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, Keys.CONTROL + 'a')
                 self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, Keys.DELETE)
-                self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, 2)
+                self.do_send_key(self.DATA_TRANSMISSION_INTERVAL, TestData.DATA_TRANSMISSION_INTERVAL_SECONDS)
                 self.is_visible(self.DATA_TRANSMISSION_DURATION)
                 self.do_send_key(self.DATA_TRANSMISSION_DURATION, Keys.CONTROL + 'a')
                 self.do_send_key(self.DATA_TRANSMISSION_DURATION, Keys.DELETE)
-                self.do_send_key(self.DATA_TRANSMISSION_DURATION, 80)
+                self.do_send_key(self.DATA_TRANSMISSION_DURATION, TestData.DATA_TRANSMISSION_DURATION_SECONDS)
                 self.is_visible(self.SIMULATION_SAVE)
                 self.do_click(self.SIMULATION_SAVE)
                 self.is_visible(self.SIMULATION_GPS)
@@ -171,7 +181,7 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.DEVICE_TYPE)
                 self.select_by_visible_text(self.DEVICE_TYPE, "GPR")
                 self.is_visible(self.NUMBER_OF_DEVICE)
-                self.do_send_key(self.NUMBER_OF_DEVICE, Keys.CONTROL+'a')
+                self.do_send_key(self.NUMBER_OF_DEVICE, Keys.CONTROL + 'a')
                 self.do_send_key(self.NUMBER_OF_DEVICE, Keys.DELETE)
                 self.do_send_key(self.NUMBER_OF_DEVICE, 1)
                 self.is_visible(self.DATA_TRANSMISSION_INTERVAL)
@@ -187,11 +197,26 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.SIMULATION_GPR)
 
     def run_simulations(self):
-        self.is_visible(self.SIMULATION_CHECK_ALL)
-        self.checked_box(self.SIMULATION_CHECK_ALL)
-        self.is_visible(self.SIMULATION_START)
-        self.do_click(self.SIMULATION_START)
         self.is_visible(self.SIMULATION_REFRESH)
         self.do_click(self.SIMULATION_REFRESH)
-
-
+        # self.is_visible(self.SIMULATION_CHECK_ALL)
+        # self.checked_box(self.SIMULATION_CHECK_ALL)
+        self.do_click(self.SIMULATION_CHECK_EMI)
+        self.do_click(self.SIMULATION_CHECK_GPS)
+        self.do_click(self.SIMULATION_CHECK_GPR)
+        self.is_visible(self.SIMULATION_START)
+        self.do_click(self.SIMULATION_START)
+        self.wait()
+        self.is_visible(self.SIMULATION_REFRESH)
+        self.do_click(self.SIMULATION_REFRESH)
+        try:
+            self.is_visible(self.SIMULATION_SLEEPING_EMI, TestData.DATA_TRANSMISSION_DURATION_SECONDS)
+            self.is_visible(self.SIMULATION_SLEEPING_GPS, TestData.DATA_TRANSMISSION_DURATION_SECONDS)
+            self.is_visible(self.SIMULATION_SLEEPING_GPR, TestData.DATA_TRANSMISSION_DURATION_SECONDS)
+        except:
+            self.is_visible(self.SIMULATION_REFRESH)
+            self.do_click(self.SIMULATION_REFRESH)
+            self.wait()
+            self.is_visible(self.SIMULATION_SLEEPING_EMI)
+            self.is_visible(self.SIMULATION_SLEEPING_GPS)
+            self.is_visible(self.SIMULATION_SLEEPING_GPR)
