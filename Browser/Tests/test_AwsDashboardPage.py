@@ -46,5 +46,5 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage = AwsConsoleDashboardPage(self.driver)
         self.AwsConsoleDashboardPage.is_visible(self.AwsConsoleDashboardPage.SUBSCRIBE_BUTTON)
         self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
-        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, TestData.MESSAGE_PAYLOAD)
+        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, True, True)
 
