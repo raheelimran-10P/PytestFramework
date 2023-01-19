@@ -11,7 +11,22 @@ To set up this project on your local machine:
 3. After virtual env created, select it on your IDE or To activate this project's virtualenv , run `conda activate PytestFrameworkEnv`.
 4. If you update or install any new package so update Config/environment.yml file also by using command `conda env export --file Config/environment.yml`
 
-## Running Tests
+## Setup env variables locally
+At the root of the project (Inside PytestFramework), create the file .env Note: don't commit this file.
+Add the following variables in .env file
+```
+BASE_URL=
+AWS_IOT_URL=
+AWS_IOT_USERNAME=
+AWS_IOT_PASSWORD=
+AWS_Console_URL=
+AWS_Console_ACCOUNT_ID=
+AWS_Console_USERNAME=
+AWS_Console_PASSWORD=
+```
+
+
+## Running Tests by command line or terminal
 Run tests simply using the `pytest` command.
 Depending upon your environment, it may be better to use `python -m pytest`.
 To Run parallel test run pytest xdist command, run `python -m pytest -n 2`
