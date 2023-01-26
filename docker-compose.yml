@@ -1,0 +1,38 @@
+version: "3.10"
+
+services:
+  container:
+    container_name: container
+    build: .
+#    depends_on:
+#      - selenium-chrome
+    entrypoint: [
+#      "./wait-for-it.sh", "-t", "15", "selenium-chrome:4445", "--", "pytest"
+       "pytest"
+    ]
+    # the wait-for-it.sh command makes the container wait until the Selenium containers are ready to work
+#    command: [ "-n2" ]
+#    # There will be "-n" tests running in parallel
+    volumes:
+      - ./dev/:/Reports/
+      - ./dev/:/Logs/
+    networks:
+      selenium_net: { }
+
+#  selenium-chrome:
+#    container_name: selenium-chrome
+#    image: selenium/standalone-chrome:4.8.0-20230123
+#    shm_size: 2gb
+#    volumes:
+#      - ./dev/shm:/dev/shm
+#    ports:
+#      - "4445:4444"
+
+
+networks:
+  selenium_net:
+    driver: bridge
+
+# sudo docker-compose up --abort-on-container-exit --remove-orphans
+# sudo docker-compose up --build --abort-on-container-exit --remove-orphans
+
