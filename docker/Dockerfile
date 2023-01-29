@@ -5,7 +5,7 @@ FROM python:3.10-alpine
 
 # Set the working directory
 RUN mkdir /PytestFramework/
-ADD . /PytestFramework/
+ADD .. /PytestFramework/
 WORKDIR /PytestFramework/
 
 # Copy the folder with the tests into the container

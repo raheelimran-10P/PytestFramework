@@ -3,7 +3,7 @@ version: "3.10"
 services:
   container:
     container_name: container
-    build: .
+    build: ..
 #    depends_on:
 #      - selenium-chrome
     entrypoint: [
