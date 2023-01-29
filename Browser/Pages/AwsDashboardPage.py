@@ -13,6 +13,7 @@ class AwsDashboardPage(BasePage):
     EMI_DEVICE_TYPE = (By.XPATH, "//td[text()='EMI']")
     EMI_TOPIC = (By.XPATH, "//td[text()='EMI_DATA']")
     CREATE_DEVICE = (By.XPATH, "//a[@href=\"/device-types/create\"]")
+    REFRESH_BUTTON = (By.XPATH, "//*[text()='Refresh']/parent::div/button")
     FILE_UPLOAD_BUTTON = (By.CSS_SELECTOR,
                           "#root > div > div > div.content-card.card > div.content-card-title.card-title.h5 > button:nth-child(3)")
     FILE_UPLOAD = (By.XPATH, "//*[@id='fileUpload']")
@@ -59,6 +60,8 @@ class AwsDashboardPage(BasePage):
         os.chdir("../")
         if emi:
             try:
+                self.do_click(self.REFRESH_BUTTON)
+                self.wait()
                 self.is_visible(self.EMI_DEVICE_TYPE)
                 self.is_visible(self.EMI_TOPIC)
             except:
@@ -76,6 +79,8 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.EMI_TOPIC)
         if gpr:
             try:
+                self.do_click(self.REFRESH_BUTTON)
+                self.wait()
                 self.is_visible(self.GPR_DEVICE_TYPE)
                 self.is_visible(self.GPR_TOPIC)
             except:
@@ -94,6 +99,8 @@ class AwsDashboardPage(BasePage):
         if gps:
             time.sleep(3)
             try:
+                self.do_click(self.REFRESH_BUTTON)
+                self.wait()
                 self.is_visible(self.GPS_DEVICE_TYPE)
                 self.is_visible(self.GPS_TOPIC)
             except:
@@ -116,6 +123,8 @@ class AwsDashboardPage(BasePage):
     def create_simulation(self, emi=True, gps=True, gpr=True):
         if emi:
             try:
+                self.do_click(self.REFRESH_BUTTON)
+                self.wait()
                 self.is_visible(self.SIMULATION_EMI)
             except:
                 self.is_visible(self.CREATE_SIMULATION)
@@ -143,6 +152,8 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.SIMULATION_EMI)
         if gps:
             try:
+                self.do_click(self.REFRESH_BUTTON)
+                self.wait()
                 self.is_visible(self.SIMULATION_GPS)
             except:
                 self.is_visible(self.CREATE_SIMULATION)
@@ -170,6 +181,8 @@ class AwsDashboardPage(BasePage):
                 self.is_visible(self.SIMULATION_GPS)
         if gpr:
             try:
+                self.do_click(self.REFRESH_BUTTON)
+                self.wait()
                 self.is_visible(self.SIMULATION_GPR)
             except:
                 self.is_visible(self.CREATE_SIMULATION)
