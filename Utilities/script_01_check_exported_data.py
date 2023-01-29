@@ -2,10 +2,9 @@ import csv
 import os
 from os import listdir
 from os.path import isfile, join
-import json
 
 
-class script_01:
+class script_01_check_exported_data:
 
     def __init__(self):
         pass
@@ -38,10 +37,21 @@ class script_01:
 
         return False
 
+    def delete_all__exported_date(self, dir_path: str) -> None:
+        dirs = [join(dir_path, f) for f in listdir(dir_path)]
+        all_files = []
+        for dir in dirs:
+            all_files.append([join(dir, f) for f in listdir(dir) if isfile(join(dir, f))])
+        for list_of_file in all_files:
+            for file in list_of_file:
+                os.remove(file)
+        for dir in dirs:
+            os.rmdir(dir)
 
-object_01 = script_01()
+object_01 = script_01_check_exported_data()
 
 path = "/media/raheel/22687D06687CD9CD/projects/groundowl-app/appData/"
+path2 = "/media/raheel/22687D06687CD9CD/projects/groundowl-app/appState/groundowl-canbus/app_state.json"
 texts = ["mock_geophex_v2_raw_emi", "mock_geophex_v2_raw_gps", "mock_ml_model_v1_till_depth", "IDSGPRMock"]
 text_01 = "mock_geophex_v2_raw_emi"
 text_02 = "mock_geophex_v2_raw_gps"
@@ -55,17 +65,13 @@ print(text_04, object_01.is_data_exported(path, text_04))
 
 if (object_01.is_data_exported(path, text_01)) and (object_01.is_data_exported(path, text_02)) and (
         object_01.is_data_exported(path, text_03)) and (object_01.is_data_exported(path, text_04)):
-    print("all passed")
-
-    dirs = [join(path, f) for f in listdir(path)]
-    all_files = []
-    for dir in dirs:
-        all_files.append([join(dir, f) for f in listdir(dir) if isfile(join(dir, f))])
-    for list_of_file in all_files:
-        for file in list_of_file:
-            os.remove(file)
-    for dir in dirs:
-        os.rmdir(dir)
+    print("Exported data is verified!")
+    object_01.delete_all__exported_date(path)
+    print("Deleted all export data!")
 
 else:
-    print("not all passed")
+    print("Exported data is not verified!")
+    object_01.delete_all__exported_date(path)
+    print("Deleted all export data!")
+
+#os.remove("/media/raheel/22687D06687CD9CD/projects/groundowl-app/appState/groundowl-canbus/app_state.json")

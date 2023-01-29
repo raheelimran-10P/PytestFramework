@@ -10,7 +10,7 @@ from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Browser.Pages.DashboardPage import DashboardPage
 from Browser.TestData.TestData import TestData
 from Browser.Tests.test_base import BaseTest
-from Utilities.script_01 import script_01
+from Utilities.script_01_check_exported_data import script_01_check_exported_data
 
 
 class TestAwsDashboardPage(BaseTest):
@@ -78,25 +78,28 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, False, False)
         self.AwsConsoleDashboardPage.wait(10)
 
-        object_01 = script_01()
-        path = "/media/raheel/22687D06687CD9CD/projects/groundowl-app/appData/"
-        text_01 = "mock_geophex_v2_raw_emi"
-        text_02 = "mock_geophex_v2_raw_gps"
-        text_03 = "mock_ml_model_v1_till_depth"
-        text_04 = "IDSGPRMock"
+        object_01 = script_01_check_exported_data()
 
-        print(text_01, object_01.is_data_exported(path, text_01))
-        print(text_02, object_01.is_data_exported(path, text_02))
-        print(text_03, object_01.is_data_exported(path, text_03))
-        print(text_04, object_01.is_data_exported(path, text_04))
+        print(TestData.EMI_KEYWORD_IN_EXPORT_DATA, object_01.is_data_exported(TestData.APPDATA_PATH, TestData.EMI_KEYWORD_IN_EXPORT_DATA))
+        print(TestData.GPS_KEYWORD_IN_EXPORT_DATA, object_01.is_data_exported(TestData.APPDATA_PATH, TestData.GPS_KEYWORD_IN_EXPORT_DATA))
+        print(TestData.MLMODEL_KEYWORD_IN_EXPORT_DATA, object_01.is_data_exported(TestData.APPDATA_PATH, TestData.MLMODEL_KEYWORD_IN_EXPORT_DATA))
+        print(TestData.IDSGPR_KEYWORD_IN_EXPORT_DATA, object_01.is_data_exported(TestData.APPDATA_PATH, TestData.IDSGPR_KEYWORD_IN_EXPORT_DATA))
 
-        if (object_01.is_data_exported(path, text_01)) and (object_01.is_data_exported(path, text_02)) and (
-                object_01.is_data_exported(path, text_03)) and (object_01.is_data_exported(path, text_04)):
-            print("all passed")
+        if (object_01.is_data_exported(TestData.APPDATA_PATH, TestData.EMI_KEYWORD_IN_EXPORT_DATA)) and \
+                (object_01.is_data_exported(TestData.APPDATA_PATH, TestData.GPS_KEYWORD_IN_EXPORT_DATA)) and \
+                (object_01.is_data_exported(TestData.APPDATA_PATH, TestData.MLMODEL_KEYWORD_IN_EXPORT_DATA)) and \
+                (object_01.is_data_exported(TestData.APPDATA_PATH, TestData.IDSGPR_KEYWORD_IN_EXPORT_DATA)):
+            print("Exported data is verified!")
+            object_01.delete_all__exported_date(TestData.APPDATA_PATH)
+            print("Deleted all export data!")
 
         else:
             raise Exception
-            print("not all passed")
+            print("Exported data is not verified!")
+            object_01.delete_all__exported_date(path)
+            print("Deleted all export data!")
+
+        os.remove(TestData.APPSTATE_FILE_PATH)
 
 
 
