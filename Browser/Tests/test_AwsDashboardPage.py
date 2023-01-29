@@ -94,8 +94,7 @@ class TestAwsDashboardPage(BaseTest):
             print("Deleted all export data!")
 
         else:
-            raise Exception
-            print("Exported data is not verified!")
+            raise Exception("Exported data is not verified!")
             object_01.delete_all__exported_date(path)
             print("Deleted all export data!")
 
