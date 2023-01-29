@@ -64,7 +64,7 @@ class AwsDashboardPage(BasePage):
             except:
                 self.is_visible(self.CREATE_DEVICE)
                 self.do_click(self.CREATE_DEVICE)
-                PATH = os.path.abspath(os.curdir) + "/TestData/JsonFiles/EMI_2022_11_25-09:56:37_AM.json"
+                PATH = os.path.abspath(os.curdir) + "/TestData/JsonFiles/EMI.json"
                 time.sleep(3)
                 self.is_visible(self.FILE_UPLOAD_BUTTON)
                 self.driver.execute_script("document.getElementById(\"fileUpload\").removeAttribute(\"hidden\");")
@@ -81,7 +81,7 @@ class AwsDashboardPage(BasePage):
             except:
                 self.is_visible(self.CREATE_DEVICE)
                 self.do_click(self.CREATE_DEVICE)
-                PATH = os.path.abspath(os.curdir) + "/TestData/JsonFiles/GPR_2022_11_25-09:57:26_AM.json"
+                PATH = os.path.abspath(os.curdir) + "/TestData/JsonFiles/GPR.json"
                 time.sleep(3)
                 self.is_visible(self.FILE_UPLOAD_BUTTON)
                 self.driver.execute_script("document.getElementById(\"fileUpload\").removeAttribute(\"hidden\");")
@@ -99,7 +99,7 @@ class AwsDashboardPage(BasePage):
             except:
                 self.is_visible(self.CREATE_DEVICE)
                 self.do_click(self.CREATE_DEVICE)
-                PATH = os.path.abspath(os.curdir) + "/TestData/JsonFiles/GPS_2022_11_25-09:56:28_AM.json"
+                PATH = os.path.abspath(os.curdir) + "/TestData/JsonFiles/GPS.json"
                 time.sleep(3)
                 self.is_visible(self.FILE_UPLOAD_BUTTON)
                 self.driver.execute_script("document.getElementById(\"fileUpload\").removeAttribute(\"hidden\");")
