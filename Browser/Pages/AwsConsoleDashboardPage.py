@@ -11,8 +11,7 @@ class AwsConsoleDashboardPage(BasePage):
     SUBSCRIBE_BUTTON = (By.XPATH, "//button[@data-testid='subscribeButton']")
     TOPIC_FILTER_FIELD = (By.XPATH, "//input[@name='topicFilter']")
     ADDITIONAL_CONFIGURATION = (By.XPATH, "//div[text()='Additional configuration']")
-    QUALITY_OF_SERVICE_1_RADIO_BUTTON = (By.XPATH,
-                                         "//*[text()='Quality of Service 1 - Message will be delivered at least once']/parent::span/parent::label/span[1]")
+    QUALITY_OF_SERVICE_1_RADIO_BUTTON = (By.XPATH, "//input[@name='qos' and @value='1']/parent::span")
     PUBLISH_TO_A_TOPIC_TAB = (By.XPATH, "//h2[text()='Publish to a topic']")
     TOPIC_NAME_FIELD = (By.XPATH, "//input[@name='topic']")
     PUBLISH_BUTTON = (By.XPATH, "//button[@data-testid='publishButton']")
