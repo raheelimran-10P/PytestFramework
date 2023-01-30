@@ -8,7 +8,7 @@ baseUrl = "http://0.0.0.0:8008"
 
 
 @pytest.mark.skip(reason="just testing skip")
-def test_get_collection_data():
+def get_collection_data():
     path = "/collection"
     response = requests.get(url=baseUrl + path)
     responseJson = json.loads(response.text)
@@ -16,7 +16,7 @@ def test_get_collection_data():
 
 
 @pytest.mark.skip(reason="just testing skip")
-def test_post_collection():
+def post_collection():
     file = open(os.path.abspath("Api/TestData/CollectionPayload.json"), "r")
     path = "/collection"
     inputData = json.loads(file.read())
