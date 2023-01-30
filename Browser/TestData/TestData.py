@@ -5,10 +5,16 @@ class TestData:
     MLMODEL_TITLE = "MLModelDevice"
     NUMBER_OF_DEVICE = 1
     DATA_TRANSMISSION_INTERVAL_SECONDS = 2
-    DATA_TRANSMISSION_DURATION_SECONDS = 120
+    DATA_TRANSMISSION_DURATION_SECONDS = 80
     TOPIC_FILTER = "CAN_BUS_PUB"
     TOPIC_NAME = "CAN_BUS_SUB"
     MESSAGE_PAYLOAD_01 = "{\"DataStorageReq\": 0, \"SensorInUseFlag\": 0, \"CompactionThresholdTrgt\": 2241}"
     MESSAGE_PAYLOAD_02 = "{\"DataStorageReq\": 0, \"SensorInUseFlag\": 1, \"CompactionThresholdTrgt\": 2241}"
     MESSAGE_PAYLOAD_03 = "{\"DataStorageReq\": 1, \"SensorInUseFlag\": 0, \"CompactionThresholdTrgt\": 2241}"
     MESSAGE_PAYLOAD_04 = "{\"DataStorageReq\": 1, \"SensorInUseFlag\": 1, \"CompactionThresholdTrgt\": 2241}"
+    APPDATA_PATH = "/media/raheel/22687D06687CD9CD/projects/groundowl-app/appData/"
+    APPSTATE_FILE_PATH = "/media/raheel/22687D06687CD9CD/projects/groundowl-app/appState/groundowl-canbus/app_state.json"
+    EMI_KEYWORD_IN_EXPORT_DATA = "mock_geophex_v2_raw_emi"
+    GPS_KEYWORD_IN_EXPORT_DATA = "mock_geophex_v2_raw_gps"
+    MLMODEL_KEYWORD_IN_EXPORT_DATA = "mock_ml_model_v1_till_depth"
+    IDSGPR_KEYWORD_IN_EXPORT_DATA = "IDSGPRMock"
