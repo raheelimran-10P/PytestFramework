@@ -105,3 +105,10 @@ class TestAwsDashboardPage(BaseTest):
             print("Deleted all export data!")
 
         os.remove(TestData.APPSTATE_FILE_PATH)
+
+        self.AwsConsoleDashboardPage.log_out()
+        self.AwsConsoleDashboardPage.driver.close()
+        self.AwsDashboardPage.switchTab(aws_DashboardPage)
+        self.AwsDashboardPage.log_out()
+        self.AwsDashboardPage.driver.close()
+

@@ -16,6 +16,9 @@ class AwsConsoleDashboardPage(BasePage):
     TOPIC_NAME_FIELD = (By.XPATH, "//input[@name='topic']")
     PUBLISH_BUTTON = (By.XPATH, "//button[@data-testid='publishButton']")
     MESSAGE_PAYLOAD_FIELD = (By.XPATH, "//textarea[@name='message']")
+    MENU_ACCOUNT_DROPDOWN = (By.XPATH, "//button[@aria-label='Open account menu']")
+    LOGOUT_BUTTON = (By.ID, "aws-console-logout")
+    SIGNIN_BUTTON = (By.XPATH, "//a[@href='https://console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -61,3 +64,11 @@ class AwsConsoleDashboardPage(BasePage):
         self.do_click(self.ADDITIONAL_CONFIGURATION)
         self.is_visible(self.PUBLISH_BUTTON)
         self.do_click(self.PUBLISH_BUTTON)
+
+    def log_out(self):
+        self.is_visible(self.MENU_ACCOUNT_DROPDOWN)
+        self.do_click(self.MENU_ACCOUNT_DROPDOWN)
+        self.is_visible(self.LOGOUT_BUTTON)
+        self.do_click(self.LOGOUT_BUTTON)
+        self.is_visible(self.SIGNIN_BUTTON)
+

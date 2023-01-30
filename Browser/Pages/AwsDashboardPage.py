@@ -46,6 +46,7 @@ class AwsDashboardPage(BasePage):
     SIMULATION_SLEEPING_GPS = (By.XPATH, "//td[text()='GPS']/../td[text()='sleeping']")
     SIMULATION_SLEEPING_EMI = (By.XPATH, "//td[text()='EMI']/../td[text()='sleeping']")
     SIMULATION_SLEEPING_GPR = (By.XPATH, "//td[text()='GPR']/../td[text()='sleeping']")
+    LOGOUT_BUTTON = (By.XPATH, "//*[text()='Sign Out']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -233,3 +234,10 @@ class AwsDashboardPage(BasePage):
             self.is_visible(self.SIMULATION_SLEEPING_EMI)
             self.is_visible(self.SIMULATION_SLEEPING_GPS)
             self.is_visible(self.SIMULATION_SLEEPING_GPR)
+
+    def log_out(self):
+        self.is_visible(self.LOGOUT_BUTTON)
+        self.do_click(self.LOGOUT_BUTTON)
+        self.driver.find_element(By.TAG_NAME, "amplify-authenticator")
+        self.wait()
+
