@@ -14,8 +14,8 @@ from Utilities.script_01_check_exported_data import script_01_check_exported_dat
 
 class TestAwsDashboardPage(BaseTest):
 
-    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
-    def test_6(self):
+    @pytest.mark.skip(reason="Just for testing | create device type and simulator")
+    def test_create_device_type_and_simulator(self):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
         self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
@@ -27,8 +27,8 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsDashboardPage.create_simulation()
         # self.AwsDashboardPage.run_simulations()
 
-    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
-    def test_7(self):
+    @pytest.mark.skip(reason="Just for testing | create device type, simulator, and run simulator")
+    def test_create_device_type_simulator_and_run_simulator(self):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
         self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
@@ -40,8 +40,8 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsDashboardPage.create_simulation()
         self.AwsDashboardPage.run_simulations()
 
-    @pytest.mark.skip(reason="project setup locally (not hosted on any server)")
-    def test_8(self):
+    @pytest.mark.skip(reason="Just for testing | subscribe and publish msg")
+    def test_subscribe_and_publish_msg(self):
         self.AwsConsoleLoginPage = AwsConsoleLoginPage(self.driver)
         self.AwsConsoleLoginPage.goToUrl(config('AWS_Console_URL'))
         self.AwsConsoleLoginPage.login(config('AWS_Console_ACCOUNT_ID'), config('AWS_Console_USERNAME'),
@@ -55,8 +55,8 @@ class TestAwsDashboardPage(BaseTest):
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
             (True, True, False, False)
         ])
-    def test_9(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
-               after_sensor_inuse_flag):
+    def test_for_exported_data(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
+                               after_sensor_inuse_flag):
         object_01 = script_01_check_exported_data()
         object_01.delete_all__exported_date(TestData.APPDATA_PATH)
         try:
@@ -122,8 +122,8 @@ class TestAwsDashboardPage(BaseTest):
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
             (False, False, False, False)
         ])
-    def test_10(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
-                after_sensor_inuse_flag):
+    def test_for_non_exported_data(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
+                                   after_sensor_inuse_flag):
         object_01 = script_01_check_exported_data()
         object_01.delete_all__exported_date(TestData.APPDATA_PATH)
         try:
