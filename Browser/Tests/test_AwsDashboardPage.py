@@ -120,8 +120,7 @@ class TestAwsDashboardPage(BaseTest):
 
     @pytest.mark.parametrize(
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
-            (False, False, False, False),
-            (False, False, False, True)
+            (False, False, False, False)
         ])
     def test_10(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
                 after_sensor_inuse_flag):

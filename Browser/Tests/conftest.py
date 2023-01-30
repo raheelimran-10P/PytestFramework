@@ -10,7 +10,7 @@ from webdriver_manager.core.utils import ChromeType
 def init_driver(request):
     options = Options()
     options.add_argument("start-maximized")
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     # if request.param == "Chrome":
     try:
         web_driver = webdriver.Chrome(options=options)
