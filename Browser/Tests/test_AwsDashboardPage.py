@@ -51,10 +51,18 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
         self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, True, True)
 
-    @pytest.mark.parametrize("before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
-        (True, True, False, False)
-    ])
-    def test_9(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag):
+    @pytest.mark.parametrize(
+        "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
+            (True, True, False, False)
+        ])
+    def test_9(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
+               after_sensor_inuse_flag):
+        object_01 = script_01_check_exported_data()
+        object_01.delete_all__exported_date(TestData.APPDATA_PATH)
+        try:
+            os.remove(TestData.APPSTATE_FILE_PATH)
+        except:
+            pass
         self.AwsConsoleLoginPage = AwsConsoleLoginPage(self.driver)
         self.AwsConsoleLoginPage.goToUrl(config('AWS_Console_URL'))
         self.AwsConsoleLoginPage.login(config('AWS_Console_ACCOUNT_ID'), config('AWS_Console_USERNAME'),
@@ -62,7 +70,8 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage = AwsConsoleDashboardPage(self.driver)
         self.AwsConsoleDashboardPage.is_visible(self.AwsConsoleDashboardPage.SUBSCRIBE_BUTTON)
         self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
-        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, before_data_storage_req, before_sensor_inuse_flag)
+        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, before_data_storage_req,
+                                                        before_sensor_inuse_flag)
         aws_ConsoleDashboardPage = self.driver.current_window_handle
         self.AwsConsoleDashboardPage.openNewTab()
         self.AwsLoginPage = AwsLoginPage(self.driver)
@@ -77,10 +86,9 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsDashboardPage.run_simulations()
         aws_DashboardPage = self.driver.current_window_handle
         self.AwsDashboardPage.switchTab(aws_ConsoleDashboardPage)
-        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, after_data_storage_req, after_sensor_inuse_flag)
+        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, after_data_storage_req,
+                                                        after_sensor_inuse_flag)
         self.AwsConsoleDashboardPage.wait(10)
-
-        object_01 = script_01_check_exported_data()
 
         print(TestData.EMI_KEYWORD_IN_EXPORT_DATA,
               object_01.is_data_exported(TestData.APPDATA_PATH, TestData.EMI_KEYWORD_IN_EXPORT_DATA))
@@ -101,8 +109,6 @@ class TestAwsDashboardPage(BaseTest):
 
         else:
             raise Exception("Exported data is not verified!")
-            object_01.delete_all__exported_date(path)
-            print("Deleted all export data!")
 
         os.remove(TestData.APPSTATE_FILE_PATH)
 
@@ -112,3 +118,55 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsDashboardPage.log_out()
         self.AwsDashboardPage.driver.close()
 
+    @pytest.mark.parametrize(
+        "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
+            (False, False, False, False)
+        ])
+    def test_10(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
+                after_sensor_inuse_flag):
+        object_01 = script_01_check_exported_data()
+        object_01.delete_all__exported_date(TestData.APPDATA_PATH)
+        try:
+            os.remove(TestData.APPSTATE_FILE_PATH)
+        except:
+            pass
+        self.AwsConsoleLoginPage = AwsConsoleLoginPage(self.driver)
+        self.AwsConsoleLoginPage.goToUrl(config('AWS_Console_URL'))
+        self.AwsConsoleLoginPage.login(config('AWS_Console_ACCOUNT_ID'), config('AWS_Console_USERNAME'),
+                                       config('AWS_Console_PASSWORD'))
+        self.AwsConsoleDashboardPage = AwsConsoleDashboardPage(self.driver)
+        self.AwsConsoleDashboardPage.is_visible(self.AwsConsoleDashboardPage.SUBSCRIBE_BUTTON)
+        self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
+        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, before_data_storage_req,
+                                                        before_sensor_inuse_flag)
+        aws_ConsoleDashboardPage = self.driver.current_window_handle
+        self.AwsConsoleDashboardPage.openNewTab()
+        self.AwsLoginPage = AwsLoginPage(self.driver)
+        self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
+        self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
+        self.AwsDashboardPage = AwsDashboardPage(self.driver)
+        self.AwsDashboardPage.get_title('IoT Device Simulator')
+        self.AwsDashboardPage.go_to_device_type()
+        self.AwsDashboardPage.create_device_types()
+        self.AwsDashboardPage.go_to_simulation()
+        self.AwsDashboardPage.create_simulation()
+        self.AwsDashboardPage.run_simulations()
+        aws_DashboardPage = self.driver.current_window_handle
+        self.AwsDashboardPage.switchTab(aws_ConsoleDashboardPage)
+        self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, after_data_storage_req,
+                                                        after_sensor_inuse_flag)
+        self.AwsConsoleDashboardPage.wait(10)
+
+        dir = os.listdir(TestData.APPDATA_PATH)
+
+        # Checking if the AppData folder is empty or not
+        if len(dir) == 0:
+            print("Exported data is not generated!")
+        else:
+            raise Exception("Exported data is generated!")
+
+        self.AwsConsoleDashboardPage.log_out()
+        self.AwsConsoleDashboardPage.driver.close()
+        self.AwsDashboardPage.switchTab(aws_DashboardPage)
+        self.AwsDashboardPage.log_out()
+        self.AwsDashboardPage.driver.close()
