@@ -15,7 +15,7 @@ from Utilities.script_01_check_exported_data import script_01_check_exported_dat
 class TestAwsDashboardPage(BaseTest):
 
     @pytest.mark.skip(reason="Just for testing | create device type and simulator")
-    def test_create_device_type_and_simulator(self):
+    def create_device_type_and_simulator(self):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
         self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
@@ -28,7 +28,7 @@ class TestAwsDashboardPage(BaseTest):
         # self.AwsDashboardPage.run_simulations()
 
     @pytest.mark.skip(reason="Just for testing | create device type, simulator, and run simulator")
-    def test_create_device_type_simulator_and_run_simulator(self):
+    def create_device_type_simulator_and_run_simulator(self):
         self.AwsLoginPage = AwsLoginPage(self.driver)
         self.AwsLoginPage.goToUrl(config('AWS_IOT_URL'))
         self.AwsLoginPage.login(config('AWS_IOT_USERNAME'), config('AWS_IOT_PASSWORD'))
@@ -41,7 +41,7 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsDashboardPage.run_simulations()
 
     @pytest.mark.skip(reason="Just for testing | subscribe and publish msg")
-    def test_subscribe_and_publish_msg(self):
+    def subscribe_and_publish_msg(self):
         self.AwsConsoleLoginPage = AwsConsoleLoginPage(self.driver)
         self.AwsConsoleLoginPage.goToUrl(config('AWS_Console_URL'))
         self.AwsConsoleLoginPage.login(config('AWS_Console_ACCOUNT_ID'), config('AWS_Console_USERNAME'),
@@ -51,6 +51,7 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
         self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, True, True)
 
+    # @pytest.mark.skip(reason="Just for testing")
     @pytest.mark.parametrize(
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
             (True, True, False, False)
@@ -118,6 +119,7 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsDashboardPage.log_out()
         self.AwsDashboardPage.driver.close()
 
+    # @pytest.mark.skip(reason="Just for testing")
     @pytest.mark.parametrize(
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
             (False, False, False, False)
