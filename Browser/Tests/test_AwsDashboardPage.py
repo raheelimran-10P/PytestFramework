@@ -54,7 +54,9 @@ class TestAwsDashboardPage(BaseTest):
     # @pytest.mark.skip(reason="Just for testing")
     @pytest.mark.parametrize(
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
-            (True, True, False, False)
+            (True, True, False, False),  # Test case 13
+            (True, True, False, True),   # Test case 14
+            (True, True, True, False)    # Test case 15
         ])
     def test_for_exported_data(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
                                after_sensor_inuse_flag):
@@ -73,6 +75,8 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
         self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, before_data_storage_req,
                                                         before_sensor_inuse_flag)
+        self.AwsConsoleDashboardPage.wait(10)
+        object_01.delete_all__exported_date(TestData.APPDATA_PATH)
         aws_ConsoleDashboardPage = self.driver.current_window_handle
         self.AwsConsoleDashboardPage.openNewTab()
         self.AwsLoginPage = AwsLoginPage(self.driver)
@@ -111,6 +115,7 @@ class TestAwsDashboardPage(BaseTest):
         else:
             raise Exception("Exported data is not verified!")
 
+        object_01.delete_all__exported_date(TestData.APPDATA_PATH)
         os.remove(TestData.APPSTATE_FILE_PATH)
 
         self.AwsConsoleDashboardPage.log_out()
@@ -122,7 +127,20 @@ class TestAwsDashboardPage(BaseTest):
     # @pytest.mark.skip(reason="Just for testing")
     @pytest.mark.parametrize(
         "before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req, after_sensor_inuse_flag", [
-            (False, False, False, False)
+            (False, False, False, False),  # Test case 01
+            (False, False, False, True),   # Test case 02
+            (False, False, True, False),   # Test case 03
+            (False, False, True, True),    # Test case 04
+            (False, True, False, False),   # Test case 05
+            (False, True, False, True),    # Test case 06
+            (False, True, True, False),    # Test case 07
+            (False, True, True, True),     # Test case 08
+            (True, False, False, False),   # Test case 09
+            (True, False, False, True),    # Test case 10
+            (True, False, True, False),    # Test case 11
+            (True, False, True, True),     # Test case 12
+            (True, True, True, True)       # Test case 16
+
         ])
     def test_for_non_exported_data(self, before_data_storage_req, before_sensor_inuse_flag, after_data_storage_req,
                                    after_sensor_inuse_flag):
@@ -141,6 +159,8 @@ class TestAwsDashboardPage(BaseTest):
         self.AwsConsoleDashboardPage.subscribe_to_a_topic(TestData.TOPIC_FILTER)
         self.AwsConsoleDashboardPage.publish_to_a_topic(TestData.TOPIC_NAME, before_data_storage_req,
                                                         before_sensor_inuse_flag)
+        self.AwsConsoleDashboardPage.wait(10)
+        object_01.delete_all__exported_date(TestData.APPDATA_PATH)
         aws_ConsoleDashboardPage = self.driver.current_window_handle
         self.AwsConsoleDashboardPage.openNewTab()
         self.AwsLoginPage = AwsLoginPage(self.driver)
@@ -166,6 +186,9 @@ class TestAwsDashboardPage(BaseTest):
             print("Exported data is not generated!")
         else:
             raise Exception("Exported data is generated!")
+
+        object_01.delete_all__exported_date(TestData.APPDATA_PATH)
+        os.remove(TestData.APPSTATE_FILE_PATH)
 
         self.AwsConsoleDashboardPage.log_out()
         self.AwsConsoleDashboardPage.driver.close()
