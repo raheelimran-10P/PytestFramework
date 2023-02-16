@@ -3,8 +3,10 @@ from appium import webdriver
 
 
 @pytest.fixture()
-def init_driver2(request):
-    desired_caps = {"app": "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App"}
+def setup(request):
+    desired_caps = {
+        "app": "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App"
+    }
     app_driver = webdriver.Remote(command_executor='http://127.0.0.1:4723', desired_capabilities=desired_caps)
     request.cls.driver = app_driver
     yield

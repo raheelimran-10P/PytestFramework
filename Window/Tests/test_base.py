@@ -1,6 +1,6 @@
 import pytest
 
 
-@pytest.mark.usefixtures("init_driver2")
+@pytest.mark.usefixtures("setup")
 class BaseTest:
     pass
