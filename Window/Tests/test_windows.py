@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.support.wait import WebDriverWait
 from telenium.client import TeleniumHttpClient
 
+from Window.TestData.TestData import TestData
 from Window.Tests.test_base import BaseTest
 from appium.webdriver.common.appiumby import AppiumBy
 from telenium import connect
@@ -20,6 +21,5 @@ class TestWindow(BaseTest):
         # go to kivy app | cd app
         # python -m telenium.execute main.py
         cli = connect()
-        cli.wait('//MDNavigationRailItem[@text="Connect"]', 5)
-        cli.wait_click('//MDRaisedButton[@text="Connect"]', 5)
-        cli.sleep(10)
+        cli.wait('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
+        cli.wait_click('//MDRaisedButton[@text="Connect"]', TestData.TIMEOUT)
