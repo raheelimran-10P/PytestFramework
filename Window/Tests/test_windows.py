@@ -21,5 +21,6 @@ class TestWindow(BaseTest):
         # go to kivy app | cd app
         # python -m telenium.execute main.py
         cli = connect()
+        cli.assertExists('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
         cli.wait('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
         cli.wait_click('//MDRaisedButton[@text="Connect"]', TestData.TIMEOUT)
