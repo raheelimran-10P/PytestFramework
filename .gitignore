@@ -8,3 +8,4 @@ Reports/PytestHtmlReport/report.html
 .env
 Logs/test.log
 dev
+Window/Tests/Logs/test.log
