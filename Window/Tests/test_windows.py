@@ -1,6 +1,7 @@
 import time
-from selenium.webdriver.support.wait import WebDriverWait
 
+import pytest
+from selenium.webdriver.support.wait import WebDriverWait
 from Browser.Pages.AwsDashboardPage import AwsDashboardPage
 from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Window.TestData.TestData import TestData
@@ -17,6 +18,11 @@ class TestWindow(BaseTest):
             first_element_value = list(element_to_check_for_dict.values())[0]
             element_to_check_for_dict = self.driver.create_web_element(element_id=first_element_value)
         return element_to_check_for_dict
+
+    @pytest.mark.skip(reason="Just for testing | reason")
+    def test_3(self):
+        # Interact with app using accessibility IDs
+        self.driver.find_element_by_accessibility_id("warmup_button")
 
     def test_01(self):
         # go to kivy app | cd app
@@ -37,10 +43,21 @@ class TestWindow(BaseTest):
         self.AwsDashboardPage.create_device_types()
         self.AwsDashboardPage.go_to_simulation()
         self.AwsDashboardPage.create_simulation()
-        self.AwsDashboardPage.run_simulations()
+        self.AwsDashboardPage.run_simulations_without_wait()
 
         app_driver.assertExists('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
         app_driver.wait_click('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
+        app_driver.sleep(5)
+        app_driver.assertExists('//MDRaisedButton[@text="Stop Warmup"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDRaisedButton[@text="Stop Warmup"]', TestData.TIMEOUT)
+        app_driver.assertExists('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
 
+    def test_2(self):
+        app_driver = connect()
+        app_driver.assertExists('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
+        app_driver.assertExists('//MDRaisedButton[@id=warmup_button]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
 
 

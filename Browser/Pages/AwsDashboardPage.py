@@ -241,3 +241,17 @@ class AwsDashboardPage(BasePage):
         self.driver.find_element(By.TAG_NAME, "amplify-authenticator")
         self.wait()
 
+    def run_simulations_without_wait(self):
+        self.is_visible(self.SIMULATION_REFRESH)
+        self.do_click(self.SIMULATION_REFRESH)
+        # self.is_visible(self.SIMULATION_CHECK_ALL)
+        # self.checked_box(self.SIMULATION_CHECK_ALL)
+        self.do_click(self.SIMULATION_CHECK_EMI)
+        self.do_click(self.SIMULATION_CHECK_GPS)
+        self.do_click(self.SIMULATION_CHECK_GPR)
+        self.is_visible(self.SIMULATION_START)
+        self.do_click(self.SIMULATION_START)
+        self.wait()
+        self.is_visible(self.SIMULATION_REFRESH)
+        self.do_click(self.SIMULATION_REFRESH)
+
