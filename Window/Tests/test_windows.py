@@ -19,11 +19,12 @@ class TestWindow(BaseTest):
             element_to_check_for_dict = self.driver.create_web_element(element_id=first_element_value)
         return element_to_check_for_dict
 
-    @pytest.mark.skip(reason="Just for testing | reason")
-    def test_3(self):
-        # Interact with app using accessibility IDs
-        self.driver.find_element_by_accessibility_id("warmup_button")
+    # @pytest.mark.skip(reason="Just for testing | reason")
+    # def test_3(self):
+    #     # Interact with app using accessibility IDs
+    #     self.driver.find_element_by_accessibility_id("warmup_button")
 
+    @pytest.mark.skip(reason="Just for testing | reason")
     def test_01(self):
         # go to kivy app | cd app
         # python -m telenium.execute main.py

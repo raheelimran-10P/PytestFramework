@@ -16,7 +16,13 @@ Run the below command after activating virtual env.
 Run `pip install telenium`.
 Run `pip install python-jsonrpc`.
 
-## Run your application with telenium client
-Go to your application repo, cd to main.py path
-Run `python -m telenium.execute main.py`.
-Now, run your pytest test cases.
+## Run your application with telenium
+Go to your application repo, go to main.py and place the below code on the top of the file.
+```
+from telenium import install
+install()
+```
+Now, run your application with mock env and then run the below command:
+```
+pytest Window --html=Reports/PytestHtmlReport/report.html --self-contained-html
+````
