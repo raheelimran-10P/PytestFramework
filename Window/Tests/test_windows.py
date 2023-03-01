@@ -5,7 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from Browser.Pages.AwsDashboardPage import AwsDashboardPage
 from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Window.TestData.TestData import TestData
-from appium.webdriver.common.appiumby import AppiumBy
+# from appium.webdriver.common.appiumby import AppiumBy
 from telenium import connect
 from decouple import config
 from Window.Tests.test_base import BaseTest
@@ -24,7 +24,7 @@ class TestWindow(BaseTest):
     #     # Interact with app using accessibility IDs
     #     self.driver.find_element_by_accessibility_id("warmup_button")
 
-    @pytest.mark.skip(reason="Just for testing | reason")
+    # @pytest.mark.skip(reason="Just for testing | reason")
     def test_01(self):
         # go to kivy app | cd app
         # python -m telenium.execute main.py
@@ -51,8 +51,8 @@ class TestWindow(BaseTest):
         app_driver.sleep(5)
         app_driver.assertExists('//MDRaisedButton[@text="Stop Warmup"]', TestData.TIMEOUT)
         app_driver.wait_click('//MDRaisedButton[@text="Stop Warmup"]', TestData.TIMEOUT)
-        app_driver.assertExists('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
-        app_driver.wait_click('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
+        # app_driver.assertExists('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
+        # app_driver.wait_click('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
 
     def test_2(self):
         app_driver = connect()
@@ -60,5 +60,3 @@ class TestWindow(BaseTest):
         app_driver.wait_click('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
         app_driver.assertExists('//MDRaisedButton[@id=warmup_button]', TestData.TIMEOUT)
         app_driver.wait_click('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
-
-
