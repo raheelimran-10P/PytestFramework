@@ -1,3 +1,4 @@
+from datetime import datetime
 import time
 
 import pytest
@@ -51,12 +52,35 @@ class TestWindow(BaseTest):
         app_driver.sleep(5)
         app_driver.assertExists('//MDRaisedButton[@text="Stop Warmup"]', TestData.TIMEOUT)
         app_driver.wait_click('//MDRaisedButton[@text="Stop Warmup"]', TestData.TIMEOUT)
-        # app_driver.assertExists('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
-        # app_driver.wait_click('//MDRaisedButton[@id=start_button]', TestData.TIMEOUT)
+        app_driver.sleep(3)
+        text = f"{datetime.now().strftime('%m/%d/%y %H:%M:%S')}-Automation"
+        app_driver.setattr("//MDTextField", "text", "")
+        app_driver.setattr("//MDTextField", "text", text)
+        app_driver.wait_click('//MDRaisedButton[@text="Start"]', TestData.TIMEOUT)
+        app_driver.sleep(5)
+        app_driver.wait_click('//MDRaisedButton[@text="Stop"]', TestData.TIMEOUT)
+        app_driver.assertExists('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
+        app_driver.sleep(5)
+
+        app_driver.wait_click('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDRaisedButton[@text="Disconnect"]', TestData.TIMEOUT)
 
     def test_2(self):
         app_driver = connect()
+
+        app_driver.assertExists('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDRaisedButton[@text="Connect"]', TestData.TIMEOUT)
+        app_driver.assertExists('//MDLabel[@text="Connected"]', TestData.TIMEOUT)
         app_driver.assertExists('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
         app_driver.wait_click('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
-        app_driver.assertExists('//MDRaisedButton[@id=warmup_button]', TestData.TIMEOUT)
-        app_driver.wait_click('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
+
+        # app_driver.wait_click('//MDTextField[@hint_text="Collection Name"]', TestData.TIMEOUT)
+        print(app_driver.version())
+        print(app_driver.getattr("//MDTextField", "hint_text"))
+        print(app_driver.setattr("//MDTextField", "text", "abc"))
+        # app_driver.wait('//MDTextField[@hint_text="Collection Name"]]', TestData.TIMEOUT).__setattr__(name="text", value="abc")
+        # app_driver.assertExists('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
+        # app_driver.wait_click('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
+        # app_driver.assertExists('//MDRaisedButton[@id=warmup_button]', TestData.TIMEOUT)
+        # app_driver.wait_click('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
