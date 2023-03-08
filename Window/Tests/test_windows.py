@@ -62,25 +62,17 @@ class TestWindow(BaseTest):
         app_driver.assertExists('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
         app_driver.wait_click('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
         app_driver.sleep(5)
+        app_driver.assertExists('//MDLabel[@text="Selected 0"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDLabel[@text="Selected 0"]', TestData.TIMEOUT)
 
         app_driver.wait_click('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
         app_driver.wait_click('//MDRaisedButton[@text="Disconnect"]', TestData.TIMEOUT)
 
     def test_2(self):
         app_driver = connect()
-
-        app_driver.assertExists('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
-        app_driver.wait_click('//MDRaisedButton[@text="Connect"]', TestData.TIMEOUT)
-        app_driver.assertExists('//MDLabel[@text="Connected"]', TestData.TIMEOUT)
-        app_driver.assertExists('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
-        app_driver.wait_click('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
-
-        # app_driver.wait_click('//MDTextField[@hint_text="Collection Name"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
+        print(app_driver.select('//MDNavigationRailItem[@text="Export Data"]'))
         print(app_driver.version())
-        print(app_driver.getattr("//MDTextField", "hint_text"))
-        print(app_driver.setattr("//MDTextField", "text", "abc"))
-        # app_driver.wait('//MDTextField[@hint_text="Collection Name"]]', TestData.TIMEOUT).__setattr__(name="text", value="abc")
-        # app_driver.assertExists('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
-        # app_driver.wait_click('//MDNavigationRailItem[@text="Collect Data"]', TestData.TIMEOUT)
-        # app_driver.assertExists('//MDRaisedButton[@id=warmup_button]', TestData.TIMEOUT)
-        # app_driver.wait_click('//MDRaisedButton[@text="Warmup"]', TestData.TIMEOUT)
+        print(app_driver.select('//MDGridLayout/MDBoxLayout[1]'))
+        app_driver.wait_click('//MDGridLayout/MDBoxLayout[1]', TestData.TIMEOUT)
+
