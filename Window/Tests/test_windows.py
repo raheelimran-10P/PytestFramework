@@ -97,5 +97,11 @@ class TestWindow(BaseTest):
         self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='COM1')).click()
         self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Start')).click()
 
+        app_driver = connect()
+        app_driver.wait_click('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
+        app_driver.wait_click('//MDFillRoundFlatIconButton[@text="Connect All"]')
+
+        self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Stop')).click()
+
 
 
