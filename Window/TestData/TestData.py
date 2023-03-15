@@ -3,4 +3,5 @@ class TestData:
     WIN_APP_DRIVER_EXE_DIR = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe"
     WIN_APP_DRIVER_EXE = "WinAppDriver.exe"
     TIMEOUT = 5
+    SIMULATOR_EXE_DIR = "C:\\Users\\raheel.imran\\Downloads\\GeophexSim.exe"
 

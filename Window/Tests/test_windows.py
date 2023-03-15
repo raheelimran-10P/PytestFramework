@@ -2,11 +2,11 @@ from datetime import datetime
 import time
 
 import pytest
+from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.wait import WebDriverWait
 from Browser.Pages.AwsDashboardPage import AwsDashboardPage
 from Browser.Pages.AwsLoginPage import AwsLoginPage
 from Window.TestData.TestData import TestData
-# from appium.webdriver.common.appiumby import AppiumBy
 from telenium import connect
 from decouple import config
 from Window.Tests.test_base import BaseTest
@@ -70,9 +70,32 @@ class TestWindow(BaseTest):
 
     def test_2(self):
         app_driver = connect()
-        app_driver.wait_click('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
-        print(app_driver.select('//MDNavigationRailItem[@text="Export Data"]'))
-        print(app_driver.version())
-        print(app_driver.select('//MDGridLayout/MDBoxLayout[1]'))
-        app_driver.wait_click('//MDGridLayout/MDBoxLayout[1]', TestData.TIMEOUT)
+        # app_driver.wait_click('//MDNavigationRailItem[@text="Export Data"]', TestData.TIMEOUT)
+        # print(app_driver.select('//MDNavigationRailItem[@text="Export Data"]'))
+        # print(app_driver.version())
+        # print(app_driver.select('//MDGridLayout/MDBoxLayout[1]'))
+        # app_driver.wait_click('//MDGridLayout/MDBoxLayout[1]', TestData.TIMEOUT)
+
+        app_driver.wait("//MDGridLayout/MDBoxLayout[1]")
+        a = app_driver.execute("app.root.children[0].status_label")
+        b = app_driver.execute("app.root.children[1].children[1].id")
+
+        # app_driver.evaluate_and_store("root", "app.set_screen('export')")
+        # a = app_driver.execute("root.Exporter")
+
+        # b = app_driver.execute("app.root.children[1].manager")
+
+
+        print(a)
+        print(b)
+
+    def test_4(self):
+        # Interact with app using accessibility IDs
+        # self.driver.find_element_by_name("Open")
+        el1 = self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Open'))
+        el1.click()
+        self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='COM1')).click()
+        self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Start')).click()
+
+
 
