@@ -6,6 +6,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.wait import WebDriverWait
 from Browser.Pages.AwsDashboardPage import AwsDashboardPage
 from Browser.Pages.AwsLoginPage import AwsLoginPage
+from Window.Pages.EarthOticsDataCollector import EarthOpticsDataCollector
+from Window.Pages.Simulator import Simulator
 from Window.TestData.TestData import TestData
 from telenium import connect
 from decouple import config
@@ -90,18 +92,16 @@ class TestWindow(BaseTest):
         print(b)
 
     def test_4(self):
-        # Interact with app using accessibility IDs
-        # self.driver.find_element_by_name("Open")
-        el1 = self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Open'))
-        el1.click()
-        self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='COM1')).click()
-        self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Start')).click()
+        self.Simulator = Simulator(self.driver)
+        self.Simulator.select_port()
+        self.Simulator.start()
 
-        app_driver = connect()
-        app_driver.wait_click('//MDNavigationRailItem[@text="Connect"]', TestData.TIMEOUT)
-        app_driver.wait_click('//MDFillRoundFlatIconButton[@text="Connect All"]')
+        self.EarthOpticsDataCollector = EarthOpticsDataCollector()
+        self.EarthOpticsDataCollector.connect()
+        self.EarthOpticsDataCollector.go_to_connect_tab()
+        self.EarthOpticsDataCollector.click_on_connect_all_button()
 
-        self.get_web_element_from_dict_if_it_is(self.driver.find_element(by=AppiumBy.NAME, value='Stop')).click()
+        self.Simulator.stop()
 
 
 
