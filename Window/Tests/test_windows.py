@@ -95,13 +95,14 @@ class TestWindow(BaseTest):
         self.Simulator = Simulator(self.driver)
         self.Simulator.select_port()
         self.Simulator.start()
-
         self.EarthOpticsDataCollector = EarthOpticsDataCollector()
         self.EarthOpticsDataCollector.connect()
         self.EarthOpticsDataCollector.go_to_connect_tab()
         self.EarthOpticsDataCollector.click_on_connect_all_button()
-
+        self.Simulator.wait(5)
+        self.EarthOpticsDataCollector.click_on_disconnect_all_button()
         self.Simulator.stop()
+
 
 
 
